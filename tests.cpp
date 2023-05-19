@@ -6,15 +6,15 @@
 BOOST_AUTO_TEST_CASE(ConstructorTest)
 {
     // Test that the constructor does not throw an exception when given a valid path
-    BOOST_CHECK_NO_THROW(FaceDetector("/opt/homebrew/Cellar/opencv/4.7.0_4/share/opencv4/haarcascades/haarcascade_frontalface_default.xml"));
+    BOOST_CHECK_NO_THROW(FaceDetector("/usr/share/opencv4/haarcascades/haarcascade_frontalface_default.xml"));
     
     // Test that the constructor throws an exception when given an invalid path
-    BOOST_CHECK_THROW(FaceDetector("/opt/homebrew/Cellar/opencv/4.7.0_4/share/opencv4/haarcascades/haarcascade_frontalface_defaulterror.xml"), std::runtime_error);
+    BOOST_CHECK_THROW(FaceDetector("/usr/share/opencv4/haarcascades/haarcascade_frontalface_default_error.xml"), std::runtime_error);
 }
 
 BOOST_AUTO_TEST_CASE(DetectionTest)
 {
-    FaceDetector detector("/opt/homebrew/Cellar/opencv/4.7.0_4/share/opencv4/haarcascades/haarcascade_frontalface_default.xml");
+    FaceDetector detector("/usr/share/opencv4/haarcascades/haarcascade_frontalface_default.xml");
 
     // Load a test image
     cv::Mat test_image = cv::imread("../faceimg.jpg", cv::IMREAD_GRAYSCALE);
