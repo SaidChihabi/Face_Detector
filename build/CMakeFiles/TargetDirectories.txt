@@ -1,4 +1,0 @@
-/Users/saidchihabi/Desktop/Face_Detector/build/CMakeFiles/Face_Detector.dir
-/Users/saidchihabi/Desktop/Face_Detector/build/CMakeFiles/Face_Detector_tests.dir
-/Users/saidchihabi/Desktop/Face_Detector/build/CMakeFiles/edit_cache.dir
-/Users/saidchihabi/Desktop/Face_Detector/build/CMakeFiles/rebuild_cache.dir

@@ -9,9 +9,8 @@ BOOST_AUTO_TEST_CASE(ConstructorTest)
     BOOST_CHECK_NO_THROW(FaceDetector("/opt/homebrew/Cellar/opencv/4.7.0_4/share/opencv4/haarcascades/haarcascade_frontalface_default.xml"));
     
     // Test that the constructor throws an exception when given an invalid path
-    BOOST_CHECK_THROW(FaceDetector("/path/to/invalid/haarcascade_frontalface_default.xml"), std::runtime_error);
+    BOOST_CHECK_THROW(FaceDetector("/opt/homebrew/Cellar/opencv/4.7.0_4/share/opencv4/haarcascades/haarcascade_frontalface_defaulterror.xml"), std::runtime_error);
 }
-
 
 BOOST_AUTO_TEST_CASE(DetectionTest)
 {
