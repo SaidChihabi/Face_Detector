@@ -1,62 +1,50 @@
-#include <opencv2/opencv.hpp>
-
-using namespace cv;
+#include "face_detector.h"
+#include <opencv2/highgui.hpp>
+#include <iostream>
 
 int main()
 {
-    // Open the video stream
-    VideoCapture cap(0);
-    if (!cap.isOpened())
-    {
-        std::cout << "Error opening video stream" << std::endl;
+    cv::VideoCapture cap(0);
+    if (!cap.isOpened()) {
+        std::cerr << "ERROR: Could not open camera" << '\n';
         return -1;
     }
 
-    // Create a background subtractor object
-    Ptr<BackgroundSubtractorMOG2> bgsubtractor = createBackgroundSubtractorMOG2();
+    FaceDetector detector("/opt/homebrew/Cellar/opencv/4.7.0_4/share/opencv4/haarcascades/haarcascade_frontalface_default.xml");
 
-    while (true)
+    try
     {
-        Mat frame;
-        cap >> frame;
+        cv::Mat frame;
 
-        if (frame.empty())
-            break;
-
-        // Apply the background subtractor to the frame
-        Mat fgmask;
-        bgsubtractor->apply(frame, fgmask);
-
-        // Morphological operations to remove noise
-        Mat kernel = getStructuringElement(MORPH_ELLIPSE, Size(5, 5));
-        morphologyEx(fgmask, fgmask, MORPH_OPEN, kernel);
-        morphologyEx(fgmask, fgmask, MORPH_CLOSE, kernel);
-
-        // Find contours of objects in the foreground
-        std::vector<std::vector<Point>> contours;
-        findContours(fgmask, contours, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE);
-
-        // Draw bounding boxes around objects
-        for (size_t i = 0; i < contours.size(); i++)
+        while (true)
         {
-            Rect bbox = boundingRect(contours[i]);
-            rectangle(frame, bbox, Scalar(0, 255, 0), 2);
+            // Capture frame-by-frame
+            cap >> frame;
+            
+            if (frame.empty()) {
+                std::cerr << "ERROR: Frame is empty" << '\n';
+                break;
+            }
+
+            std::vector<cv::Rect> faces = detector.detect(frame);
+
+            for (const cv::Rect& face : faces)
+            {
+                cv::rectangle(frame, face, cv::Scalar(0, 255, 0), 2);
+            }
+
+            cv::imshow("Face Detection", frame);
+
+            // If 'q' key is pressed on keyboard, exit loop
+            if (cv::waitKey(1) == 'q') {
+                break;
+            }
         }
-
-        // Display the resulting frame
-        imshow("Frame", frame);
-
-        // Press ESC on keyboard to exit
-        char c = (char)waitKey(25);
-        if (c == 27)
-            break;
     }
-
-    // Release the video capture object
-    cap.release();
-
-    // Close all windows
-    destroyAllWindows();
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
 
     return 0;
 }

@@ -1,18 +1,23 @@
-name: CI
+name: CI/CD
 
 on: [push, pull_request]
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+    build:
+        runs-on: ubuntu-latest
 
-    steps:
-    - uses: actions/checkout@v2
-    - name: Install OpenCV
-      run: sudo apt-get install libopencv-dev
-    - name: Build and run C++ code
-      run: |
-        mkdir build
-        cd build
-        cmake ..
-        make
+        steps:
+            - uses: actions/checkout@v2
+
+            - name: Install OpenCV and Boost.test
+              run: |
+                sudo apt update
+                sudo apt install -y libopencv-dev libboost-test-dev
+
+            - name: Build and test C++ code
+              run: |
+                mkdir build
+                cd build
+                cmake ..
+                make
+                ./Face_Detector_tests
