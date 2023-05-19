@@ -1,54 +1,76 @@
-# Object Detection
+# Face Recognition System
 
-This is an Object Detection project using OpenCV.
+This is a real-time face recognition project using OpenCV and C++.
 
 ## Prerequisites
 
 - OpenCV 4.0 or higher
 - CMake 3.0 or higher
 - C++11 compatible compiler
+- Boost Library for unit testing
+
+## Features
+
+- Real-time face detection and recognition
+- Usage of Haar Cascade Classifier for high accuracy detection
+- Optimized build process using CMake
+- Code validation through unit testing using the Boost library
+- Continuous Integration setup using GitHub Actions
 
 ## Installation
 
-1. Clone the repository:
-
-```git clone https://github.com/SaidChihabi/Object-Detection.git```
-
-
-2. Create a build directory:
+Clone the repository:
+ ```
+ git clone https://github.com/SaidChihabi/Face_Detector.git
+ ```
+ 
+ 
+ 
+Create a build directory:
 
 ```
-cd Object-Detection
+cd Face-Recognition
 mkdir build
 cd build
 ```
 
-3. Generate the build files using CMake:
 
-```cmake ..```
+Generate the build files using CMake:
+
+```
+cmake ..
+```
 
 
-4. Build the project:
+Build the project:
 
-```make```
+```
+make
+```
 
 
 ## Usage
 
 Run the executable:
 
-```./Object-Detection```
+```
+./Face_Detector
+```
 
 
 ## Configuration
 
-The object to detect and the color range to use for detection can be configured in the main.cpp file. By default, the code is set up to detect red objects.
+The parameters for face detection can be configured in the main.cpp file. By default, the code is set up for real-time face detection.
+
+## Testing
+
+Unit tests can be run using the `Face_Detector_tests` executable generated during the build process. These tests use the Boost testing framework. 
+
+```
+./Face_Detector_tests
+```
+
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Acknowledgments
-
-- [OpenCV](https://opencv.org/) for providing the computer vision library.
-- [Face Detection using OpenCV](https://github.com/opencv/opencv/tree/master/samples/cpp) for providing the face detection code used in this project as a reference.
+This project is licensed under the MIT License - see the LICENSE file for details.
