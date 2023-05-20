@@ -9,8 +9,8 @@ find_package(OpenCV REQUIRED)
 include_directories(${OpenCV_INCLUDE_DIRS})
 include_directories(${Boost_INCLUDE_DIRS})
 
-add_executable(Face_Detector main.cpp face_detector.cpp)
+add_executable(Face_Detector main.cpp)
 target_link_libraries(Face_Detector ${OpenCV_LIBS})
 
-add_executable(Face_Detector_tests tests.cpp face_detector.cpp)
+add_executable(Face_Detector_tests tests.cpp)
 target_link_libraries(Face_Detector_tests ${OpenCV_LIBS} Boost::unit_test_framework)
