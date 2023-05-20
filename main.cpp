@@ -7,7 +7,7 @@ int main()
 {
     // Load the cascade
     cv::CascadeClassifier face_cascade;
-    if (!face_cascade.load("/opt/homebrew/Cellar/opencv/4.7.0_4/share/opencv4/haarcascades/haarcascade_frontalface_default.xml"))
+    if (!face_cascade.load("/System/Volumes/Data/opt/homebrew/Cellar/opencv/4.7.0_4/share/opencv4/haarcascades/haarcascade_frontalface_default.xml"))
     {
         std::cout << "Error loading cascade file for face" << std::endl;
         return 1;
