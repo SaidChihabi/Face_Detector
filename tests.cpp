@@ -5,7 +5,7 @@
 
 BOOST_AUTO_TEST_CASE(DetectionTest)
 {
-    std::string cascade_path = "/opt/homebrew/Cellar/opencv/4.7.0_4/share/opencv4/haarcascades/haarcascade_frontalface_default.xml";
+    std::string cascade_path = "../haarcascade_frontalface_default.xml";
     cv::CascadeClassifier face_cascade;
     if (!face_cascade.load(cascade_path))
     {
